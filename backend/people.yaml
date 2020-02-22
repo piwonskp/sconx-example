@@ -82,3 +82,27 @@ paths:
             application/jsan:
               schema:
                 $ref: "#/components/schemas/AgedPerson"
+  /read/compressed:
+    get:
+      operationId: "compressed_people.read_compressed"
+      tags:
+        - "People"
+      responses:
+        200:
+          description: "Read people list operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Poeple"
+  /read/jsan/compressed:
+    get:
+      operationId: "compressed_people.read_jsan_compressed"
+      tags:
+        - "People"
+      responses:
+        200:
+          description: "Read people list operation"
+          content:
+            application/jsan:
+              schema:
+                $ref: "#/components/schemas/Poeple"

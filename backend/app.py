@@ -1,3 +1,5 @@
+import lzw
+
 from flask_cors import CORS
 from faker import Faker
 from sconx import App
@@ -19,6 +21,7 @@ def generate_people_json(length):
 
 
 sconx_app = App(__name__,
+                decompress={'lzw': lzw.f_decompress}, compress={'lzw': lzw.f_compress},
                 options={'serve_spec': True})
 app = sconx_app.app
 app.config['RESPONSE_PAYLOAD'] = generate_people_json(300)

@@ -4,46 +4,44 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 
 import {getLen, Panel} from './utils';
-import CompressedComparison from './CompressedComparison';
 
 
-export const getJSON = () => getLen('');
-export const getJSAN = () => getLen('/jsan');
+const getCompressedJSAN = () => getLen('/jsan/compressed');
+const getCompressedJSON = () => getLen('/compressed');
 
 
-function Comparison() {
-    const [json, setJSON] = useState('');
-    const [jsan, setJSAN] = useState('');
+function CompressedComparison() {
+    const [compressedJSON, setCompressedJSON] = useState('');
+    const [compressedJSAN, setCompressedJSAN] = useState('');
 
     useEffect(async () => {
-        setJSON(await getJSON());
-        setJSAN(await getJSAN());
+        setCompressedJSON(await getCompressedJSON());
+        setCompressedJSAN(await getCompressedJSAN());
     }, []);
   return (
     <>
         <Panel>
             <ExpansionPanelSummary>
                 <Typography>
-                    JSON length: {json[1]}
+                    Compressed JSON length: {compressedJSON[1]}
                 </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-                <Typography>{json[0]}</Typography>
+                <Typography>{compressedJSON[0]}</Typography>
             </ExpansionPanelDetails>
         </Panel>
-        <Panel>
+       <Panel>
             <ExpansionPanelSummary>
                 <Typography>
-                    JSAN length: {jsan[1]}
+                    Compressed JSAN length: {compressedJSAN[1]}
                 </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-                <Typography>{jsan[0]}</Typography>
+                <Typography>{compressedJSAN[0]}</Typography>
             </ExpansionPanelDetails>
         </Panel>
-        <CompressedComparison />
     </>
       );
 }
 
-export default Comparison;
+export default CompressedComparison;

@@ -10,7 +10,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "^3.4.0",
-    "swagger-client": "git+https://github.com/piwonskp/swagger-js.git"
+    "swagger-client": "git+https://github.com/piwonskp/swagger-js.git#compression"
   },
   "scripts": {
     "start": "react-scripts start",
