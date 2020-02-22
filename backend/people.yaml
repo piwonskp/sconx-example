@@ -1,0 +1,84 @@
+openapi: "3.0.2"
+info:
+  version: "0.0.1"
+  title: Swagger REST Article
+components:
+  schemas:
+    Poeple:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/Person"
+    Person:
+      type: object
+      properties:
+          last_name:
+            type: "string"
+          first_name:
+            type: "string"
+          street_address:
+            type: "string"
+          email:
+            type: "string"
+    # Seems that swagger-js does not implement https://swagger.io/docs/specification/data-models/inheritance-and-polymorphism/
+    # AgedPerson:
+    #   $ref: '#/components/schemas/Person'
+    #   properties:
+    #     age:
+    #       type: int
+    AgedPerson:
+      type: object
+      properties:
+        last_name:
+          type: "string"
+        first_name:
+          type: "string"
+        street_address:
+          type: "string"
+        email:
+          type: "string"
+        age:
+          type: int
+
+servers:
+  - url: "/api/people"
+
+paths:
+  /read:
+    get:
+      operationId: "people.read"
+      tags:
+        - "People"
+      responses:
+        200:
+          description: "Read people list operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Poeple"
+  /read/jsan:
+    get:
+      operationId: "people.read_jsan"
+      tags:
+        - "People"
+      responses:
+        200:
+          description: "Read people list operation"
+          content:
+            application/jsan:
+              schema:
+                $ref: "#/components/schemas/Poeple"
+  /person/add_age:
+    post:
+      operationId: "people.person_add_age"
+      requestBody:
+        content:
+          application/jsan:
+            schema:
+              $ref: "#/components/schemas/Person"
+      responses:
+        200:
+          description: Person with age
+          content:
+            application/jsan:
+              schema:
+                $ref: "#/components/schemas/AgedPerson"
